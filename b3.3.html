@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Bài 3.3 - Tạo Bảng</title>
+	<style>
+		/* Thêm CSS để bảng hiển thị đẹp và giống ví dụ trong ảnh */
+		table {
+			border-collapse: collapse;
+			font-family: Arial, sans-serif;
+			margin-top: 20px;
+		}
+		td {
+			padding: 15px 25px;
+			font-weight: bold;
+		}
+	</style>
+</head>
+<body>
+	<script type="text/javascript">
+		// Sử dụng hàm prompt() để nhập số dòng và số cột
+		var m = prompt("Nhập vào số dòng", "3");
+		var n = prompt("Nhập vào số cột", "4");
+		
+		// In thẻ mở của table theo đúng hướng dẫn
+		document.write("<table width='50%' border='1' align='center' cellpadding='0' cellspacing='0'>");
+		
+		// Vòng lặp in các dòng
+		for (var i = 1; i <= m; i++) {
+			document.write("<tr>");
+			
+			// Vòng lặp in các cột trong dòng
+			for (var j = 1; j <= n; j++) {
+				document.write("<td align='center'>" + i + j + "</td>");
+			}
+			
+			document.write("</tr>");
+		}
+		
+		// In thẻ đóng của table
+		document.write("</table>");
+	</script>
+</body>
+</html>
