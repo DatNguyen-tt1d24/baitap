@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+	<meta charset="utf-8">
+	<title>Bài 3.5 - Tạo Form Bằng JavaScript</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 20px;
+		}
+		/* Định dạng các khu vực của form để dễ nhìn hơn */
+		.form-section {
+			margin-bottom: 20px;
+			padding: 15px;
+			border: 1px solid #ccc;
+			background-color: #f9f9f9;
+			width: 50%;
+		}
+		h3 {
+			margin-top: 0;
+			color: #333;
+		}
+		.input-row {
+			margin-bottom: 10px;
+		}
+	</style>
+</head>
+<body>
+	<h2>Kết quả tạo Form</h2>
+
+	<script type="text/javascript">
+		// Nhập vào 3 số nguyên m, n, p
+		var m = prompt("Nhập vào số m (số ô nhập liệu text):", "3");
+		var n = prompt("Nhập vào số n (số nhóm radio):", "2");
+		var p = prompt("Nhập vào số p (số tùy chọn dropdown):", "4");
+
+		// Chuyển đổi dữ liệu nhập vào thành số nguyên
+		m = parseInt(m) || 0;
+		n = parseInt(n) || 0;
+		p = parseInt(p) || 0;
+
+		// Bắt đầu in thẻ form
+		document.write("<form>");
+
+		// 1. Tạo m ô nhập liệu kiểu text
+		if (m > 0) {
+			document.write("<div class='form-section'>");
+			document.write("<h3>1. Gồm " + m + " ô nhập liệu kiểu text</h3>");
+			for (var i = 1; i <= m; i++) {
+				document.write("<div class='input-row'>");
+				document.write("<label>Text " + i + ": </label>");
+				document.write("<input type='text' name='textInput" + i + "'>");
+				document.write("</div>");
+			}
+			document.write("</div>");
+		}
+
+		// 2. Tạo n nhóm nút chọn radio
+		// Mỗi nhóm gồm 2 tùy chọn, giá trị lần lượt từ 1 đến 2n
+		if (n > 0) {
+			document.write("<div class='form-section'>");
+			document.write("<h3>2. Gồm " + n + " nhóm nút radio</h3>");
+			for (var j = 1; j <= n; j++) {
+				document.write("<div class='input-row'>");
+				document.write("<label>Nhóm " + j + ": </label>");
+				
+				// Tính toán giá trị của 2 tùy chọn trong nhóm
+				var giatri1 = 2 * j - 1; 
+				var giatri2 = 2 * j;
+				
+				// In ra 2 nút radio cho nhóm hiện tại (cùng thuộc tính name để gộp nhóm)
+				document.write("<input type='radio' name='radioGroup" + j + "' value='" + giatri1 + "'> Tùy chọn " + giatri1 + " &nbsp;&nbsp;");
+				document.write("<input type='radio' name='radioGroup" + j + "' value='" + giatri2 + "'> Tùy chọn " + giatri2);
+				
+				document.write("</div>");
+			}
+			document.write("</div>");
+		}
+
+		// 3. Tạo một danh sách chọn (dropdown menu) gồm p tùy chọn
+		if (p > 0) {
+			document.write("<div class='form-section'>");
+			document.write("<h3>3. Dropdown menu gồm " + p + " tùy chọn</h3>");
+			document.write("<select name='dropdownMenu'>");
+			
+			// Vòng lặp in ra p tùy chọn
+			for (var k = 1; k <= p; k++) {
+				document.write("<option value='" + k + "'>Text" + k + "</option>");
+			}
+			
+			document.write("</select>");
+			document.write("</div>");
+		}
+
+		// Kết thúc in thẻ form
+		document.write("</form>");
+	</script>
+</body>
+</html>
