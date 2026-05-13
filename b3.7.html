@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 3.7 - Form Validate</title>
+    <style>
+        body {
+            font-family: "Times New Roman", Times, serif;
+        }
+        .form-container {
+            background-color: #d3d3d3;
+            width: 400px;
+            padding: 20px 30px;
+            margin: 20px auto;
+            border: 1px solid #aaa;
+        }
+        .form-container h2 {
+            text-align: center;
+            font-size: 18px;
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        .form-group {
+            display: flex;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+        .form-group label {
+            width: 130px;
+            font-size: 16px;
+        }
+        .form-group input {
+            flex: 1;
+            padding: 4px;
+            font-size: 16px;
+            border: 1px solid #999;
+        }
+        .button-group {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .button-group button {
+            padding: 4px 15px;
+            font-size: 16px;
+            font-family: "Times New Roman", Times, serif;
+            cursor: pointer;
+        }
+        .button-group button:disabled {
+            background-color: #e0e0e0;
+            color: #888;
+            cursor: not-allowed;
+            border: 1px solid #ccc;
+        }
+        #result-table {
+            display: none;
+            width: 400px;
+            margin: 30px auto;
+            border-collapse: collapse;
+        }
+        #result-table th, #result-table td {
+            border: 1px solid black;
+            padding: 8px 12px;
+            font-size: 16px;
+        }
+
+        #result-table th {
+            background-color: #f2f2f2;
+            text-align: center;
+            font-size: 18px;
+        }
+        .col-title {
+            width: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Thông tin đăng ký</h2>
+        <div class="form-group">
+            <label for="username">Tên đăng nhập:</label>
+            <input type="text" id="username" name="username">
+        </div>
+        <div class="form-group">
+            <label for="password">Mật khẩu:</label>
+            <input type="password" id="password" name="password">
+        </div>
+        <div class="button-group">
+            <button type="button" id="btnNhap" onclick="kiemTraVaHienThi()">Nhập</button>
+        </div>
+    </div>
+    <table id="result-table">
+        <thead>
+            <tr>
+                <th colspan="2">Thông tin đăng nhập</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="col-title">UserName</td>
+                <td id="res-username">YourName</td>
+            </tr>
+            <tr>
+                <td class="col-title">Password</td>
+                <td id="res-password">PassWord</td>
+            </tr>
+        </tbody>
+    </table>
+    <script>
+        var txtUsername = document.getElementById("username");
+        var txtPassword = document.getElementById("password");
+        var btnNhap = document.getElementById("btnNhap");
+        window.onload = function() {
+            txtUsername.focus();
+            btnNhap.disabled = true;
+        };
+        txtUsername.onblur = function() {
+            if (txtUsername.value.trim() === "") {
+                alert("Tên đăng nhập không được để trống!");
+                btnNhap.disabled = true;
+                setTimeout(function() {
+                    txtUsername.focus();
+                }, 10);
+            } else {
+                btnNhap.disabled = false;
+            }
+        };
+        function kiemTraVaHienThi() {      
+            if (txtPassword.value.length < 6) {
+                alert("Mật khẩu phải có ít nhất 6 ký tự!");
+                txtPassword.focus();
+                return; 
+            }
+            document.getElementById("res-username").innerText = txtUsername.value;
+            document.getElementById("res-password").innerText = txtPassword.value;
+            document.getElementById("result-table").style.display = "table";
+        }
+    </script>
+
+</body>
+</html>
