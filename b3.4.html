@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Bài 3.4 - Danh Sách Sinh Viên</title>
+	<style>
+		/* Thêm CSS để bảng hiển thị đẹp và giống ví dụ trong ảnh */
+		table {
+			border-collapse: collapse;
+			font-family: "Times New Roman", Times, serif;
+			margin-top: 20px;
+		}
+		td, th {
+			padding: 10px;
+			text-align: center;
+		}
+		/* Class tạo màu nền xám cho tiêu đề */
+		.bg {
+			background-color: #d9d9d9;
+		}
+		h3 {
+			margin: 0;
+			font-size: 20px;
+		}
+	</style>
+</head>
+<body>
+	<script type="text/javascript">
+		// Nhập số lượng sinh viên
+		var n = prompt("Nhập số sinh viên", "3");
+		
+		// Bắt đầu in bảng
+		document.write("<table border='1' align='center' width='60%' cellpadding='0' cellspacing='0'>");
+		
+		// In dòng tiêu đề chính của bảng
+		document.write("<tr>");
+		document.write("<td colspan='3' align='center' class='bg'><h3>DANH SÁCH SINH VIÊN</h3></td>");
+		document.write("</tr>");
+		
+		// In dòng tiêu đề các cột
+		document.write("<tr>");
+		document.write("<th>Mã SV</th><th>Họ tên</th><th>Lớp</th>");
+		document.write("</tr>");
+		
+		// Vòng lặp nhập và in thông tin từng sinh viên
+		for (var i = 1; i <= n; i++) {
+			var masv = prompt("Nhập vào Mã số SV thứ " + i);
+			var hoten = prompt("Nhập Họ tên sinh viên thứ " + i);
+			var tenlop = prompt("Nhập Tên lớp của sinh viên thứ " + i);
+			
+			// In dữ liệu sinh viên ra một dòng (<tr>) mới
+			document.write("<tr>");
+			document.write("<td>" + masv + "</td><td>" + hoten + "</td><td>" + tenlop + "</td>");
+			document.write("</tr>");
+		}
+		
+		// Kết thúc bảng
+		document.write("</table>");
+	</script>
+</body>
+</html>
