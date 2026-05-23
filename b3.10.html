@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Đăng ký học phần</title>
+
+    <style>
+        body {
+            font-family: Times New Roman;
+            background-color: #f2f2f2;
+            padding-top: 30px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 450px;
+            background-color: white;
+            margin: auto;
+            margin-bottom: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid gray;
+        }
+
+        th, td {
+            padding: 8px;
+        }
+
+        th {
+            text-align: center;
+        }
+
+        input[type="text"] {
+            width: 200px;
+            padding: 4px;
+        }
+
+        select {
+            padding: 4px;
+        }
+
+        button {
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        #hoTen {
+            background-color: #e8f0fe;
+        }
+
+        #bangKetQua {
+            display: none;
+            width: 600px;
+        }
+
+        .center {
+            text-align: center;
+        }
+    </style>
+
+    <script>
+        // Hàm khởi tạo khi mở trang web
+        function khoiTao() {
+            document.getElementById("hoTen").focus();
+            document.getElementById("btnDangKy").disabled = true;
+        }
+
+        // Kiểm tra dữ liệu nhập
+        function kiemTra() {
+            var hoTen = document.getElementById("hoTen").value;
+            var maSV = document.getElementById("maSV").value;
+
+            if (hoTen != "" && maSV != "") {
+                document.getElementById("btnDangKy").disabled = false;
+            } else {
+                document.getElementById("btnDangKy").disabled = true;
+            }
+        }
+
+        // Hiển thị dữ liệu đăng ký
+        function dangKyHocPhan() {
+
+            var hoTen = document.getElementById("hoTen").value;
+            var maSV = document.getElementById("maSV").value;
+            var lop = document.getElementById("lop").value;
+            var hocPhan = document.getElementById("hocPhan").value;
+
+            var module;
+
+            if (document.getElementById("lyThuyet").checked) {
+                module = "Lý thuyết";
+            } else {
+                module = "Thực hành";
+            }
+
+            // Hiện bảng kết quả
+            document.getElementById("bangKetQua").style.display = "table";
+
+            // Tạo dòng mới
+            var dong =
+                "<tr>" +
+                "<td>" + hoTen + "</td>" +
+                "<td>" + maSV + "</td>" +
+                "<td>" + lop + "</td>" +
+                "<td>" + hocPhan + "</td>" +
+                "<td>" + module + "</td>" +
+                "</tr>";
+
+            // Thêm dữ liệu vào bảng
+            document.getElementById("danhSach").innerHTML += dong;
+        }
+    </script>
+</head>
+
+<body onload="khoiTao()">
+
+    <!-- Bảng đăng ký -->
+    <table>
+        <tr>
+            <th colspan="2">ĐĂNG KÝ HỌC PHẦN</th>
+        </tr>
+
+        <tr>
+            <td>Họ tên</td>
+            <td>
+                <input type="text" id="hoTen" onkeyup="kiemTra()">
+            </td>
+        </tr>
+
+        <tr>
+            <td>Mã sinh viên</td>
+            <td>
+                <input type="text" id="maSV" onkeyup="kiemTra()">
+            </td>
+        </tr>
+
+        <tr>
+            <td>Lớp</td>
+            <td>
+                <select id="lop">
+                    <option>TT1D21</option>
+                    <option>TT1D22</option>
+                    <option>TT1D23</option>
+                    <option>TT1D24</option>
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Học phần</td>
+            <td>
+                <select id="hocPhan">
+                    <option>Thiết kế Website</option>
+                    <option>Lập trình Java</option>
+                    <option>Cơ sở dữ liệu</option>
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Module</td>
+            <td>
+                <input type="radio" name="module" id="lyThuyet" checked>
+                <label for="lyThuyet">Lý thuyết</label>
+
+                <input type="radio" name="module" id="thucHanh">
+                <label for="thucHanh">Thực hành</label>
+            </td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td>
+                <button id="btnDangKy" onclick="dangKyHocPhan()">
+                    Đăng ký
+                </button>
+            </td>
+        </tr>
+    </table>
+
+    <!-- Bảng kết quả -->
+    <table id="bangKetQua">
+
+        <tr>
+            <th>Họ tên</th>
+            <th>Mã sinh viên</th>
+            <th>Lớp</th>
+            <th>Học phần</th>
+            <th>Module</th>
+        </tr>
+
+        <tbody id="danhSach" class="center">
+
+        </tbody>
+    </table>
+
+</body>
+</html>
